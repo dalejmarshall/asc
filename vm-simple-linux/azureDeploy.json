@@ -83,6 +83,7 @@
     }
   },
   "variables": {
+    "location": "[resourceGroup().location]",
     "storageAccountName": "[toLower(concat(parameters('vmName') , uniquestring(resourceGroup().id)))]",
     "nicName": "[concat(parameters('vmName'), '-nic')]",
     "imagePublisher": "Canonical",
@@ -103,6 +104,7 @@
       "type": "Microsoft.Storage/storageAccounts",
       "name": "[variables('storageAccountName')]",
       "apiVersion": "2017-06-01",
+      "location": "[variables('location')]",
       "tags": {
         "owner": "[parameters('ownerTag')]",
         "application": "[parameters('applicationTag')]",
@@ -119,6 +121,7 @@
       "apiVersion": "2017-04-01",
       "type": "Microsoft.Network/publicIPAddresses",
       "name": "[variables('publicIPAddressName')]",
+      "location": "[variables('location')]",
       "tags": {
         "owner": "[parameters('ownerTag')]",
         "application": "[parameters('applicationTag')]",
@@ -136,6 +139,7 @@
       "apiVersion": "2017-04-01",
       "type": "Microsoft.Network/virtualNetworks",
       "name": "[variables('virtualNetworkName')]",
+      "location": "[variables('location')]",
       "tags": {
         "owner": "[parameters('ownerTag')]",
         "application": "[parameters('applicationTag')]",
@@ -165,6 +169,7 @@
         "type": "Microsoft.Network/networkSecurityGroups",
         "apiVersion": "2017-03-01",
         "name": "[variables('nsgName')]",
+        "location": "[variables('location')]",
         "tags": {
             "owner": "[parameters('ownerTag')]",
             "application": "[parameters('applicationTag')]",
@@ -194,6 +199,7 @@
       "apiVersion": "2017-04-01",
       "type": "Microsoft.Network/networkInterfaces",
       "name": "[variables('nicName')]",
+      "location": "[variables('location')]",
       "tags": {
         "owner": "[parameters('ownerTag')]",
         "application": "[parameters('applicationTag')]",
@@ -228,6 +234,7 @@
       "apiVersion": "2017-03-30",
       "type": "Microsoft.Compute/virtualMachines",
       "name": "[parameters('vmName')]",
+      "location": "[variables('location')]",
       "tags": {
         "owner": "[parameters('ownerTag')]",
         "application": "[parameters('applicationTag')]",
